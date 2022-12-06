@@ -261,6 +261,9 @@
 
     buttonElement.addEventListener('click', () => {
       linkedin.init()
+
+      buttonElement.disabled = true
+      buttonElement.textContent = 'Running...'
     })
 
     sectionElement.appendChild(buttonElement)
