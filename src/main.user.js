@@ -14,8 +14,6 @@
 // @run-at          document-idle
 // ==/UserScript==
 
-// If the script does not work, you may need to allow same site scripting https://stackoverflow.com/a/50902950
-
 ;(function () {
   'use strict'
 
@@ -232,48 +230,45 @@
     }
   }
 
-  function createButtonForScript() {
-    const mainElement = document.getElementById('main')
-
+  function createInPageMenu(mainElement) {
     // Create div
-    const divElement = document.createElement('div')
-    divElement.id = 'linkedin-network-auto-connect'
-    divElement.className = 'artdeco-card mb4 p4 display-flex flex-column align-items-center'
+    const sectionElement = document.createElement('section')
+    sectionElement.id = 'linkedin-network-auto-connect'
+    sectionElement.className = 'artdeco-card mb4 p4 display-flex flex-column align-items-center'
 
-    mainElement.prepend(divElement)
+    mainElement.prepend(sectionElement)
 
     // Create title
-    const title = document.createElement('h2')
-    title.className = 't-20 mb2'
-    title.textContent = 'LinkedIn Network Auto Connect'
+    const titleElement = document.createElement('h2')
+    titleElement.className = 't-20 mb1'
+    titleElement.textContent = 'LinkedIn Network Auto Connect'
 
-    divElement.appendChild(title)
+    sectionElement.appendChild(titleElement)
 
     // Create warning message
-    const message = document.createElement('p')
-    message.className = 't-16 mb2'
-    message.textContent = 'This script will send connection requests to all users on the page. Use at your own risk.'
+    const messageElement = document.createElement('p')
+    messageElement.className = 't-16 mb3'
+    messageElement.textContent =
+      'This script will send connection requests to all users on the page. Use at your own risk.'
 
-    divElement.appendChild(message)
+    sectionElement.appendChild(messageElement)
 
     // Create button
-    const button = document.createElement('button')
-    button.className = 'artdeco-button artdeco-button--2 artdeco-button--primary'
+    const buttonElement = document.createElement('button')
+    buttonElement.className = 'artdeco-button artdeco-button--2 artdeco-button--primary'
 
-    button.textContent = 'Auto Connect'
+    buttonElement.textContent = 'Auto Connect'
 
-    button.addEventListener('click', () => {
+    buttonElement.addEventListener('click', () => {
       linkedin.init()
     })
 
-    divElement.appendChild(button)
+    sectionElement.appendChild(buttonElement)
   }
 
   const linkedin = new LinkedIn({})
 
   waitForKeyElements('#main', (element) => {
-    console.log('Found main element', element)
-
-    createButtonForScript()
+    createInPageMenu(element)
   })
 })()
