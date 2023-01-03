@@ -11,7 +11,7 @@
 // @updateURL       https://raw.githubusercontent.com/AlejandroAkbal/LinkedIn-Network-Auto-Connect-Userscript/main/src/main.user.js
 // @match           https://www.linkedin.com/mynetwork/
 // @grant           none
-// @require https://cdn.jsdelivr.net/gh/CoeJoder/waitForKeyElements.js@v1.2/waitForKeyElements.js
+// @require https://cdn.jsdelivr.net/gh/CoeJoder/waitForKeyElements.js@v1.2/waitForKeyElements.js#sha256-q2NOe7ej95rEv3NBnfvsseaWx/ADZmaOI+/eaeARj5Q=
 // @run-at          document-idle
 // ==/UserScript==
 
