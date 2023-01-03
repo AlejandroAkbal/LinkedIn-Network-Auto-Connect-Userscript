@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name            LinkedIn Network Auto Connect
 // @namespace       AlejandroAkbal
-// @version         0.1
+// @version         0.2
 // @description     Automatically connect with people on the "My Network" LinkedIn page
 // @author          Alejandro Akbal
 // @license         AGPL-3.0
