@@ -4,6 +4,7 @@
 // @version         0.1
 // @description     Automatically connect with people on the "My Network" LinkedIn page
 // @author          Alejandro Akbal
+// @license         AGPL-3.0
 // @icon            https://www.google.com/s2/favicons?sz=64&domain=linkedin.com
 // @homepage        https://github.com/AlejandroAkbal/LinkedIn-Network-Auto-Connect-Userscript
 // @downloadURL     https://raw.githubusercontent.com/AlejandroAkbal/LinkedIn-Network-Auto-Connect-Userscript/main/src/main.user.js
