@@ -3,6 +3,5 @@ module.exports = {
   semi: false,
   singleQuote: true,
   trailingComma: 'none',
-  vueIndentScriptAndStyle: true,
-  singleAttributePerLine: true,
-};
+  singleAttributePerLine: true
+}
