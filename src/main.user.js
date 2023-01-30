@@ -143,11 +143,7 @@
       console.info(`Found ${filteredButtonElements.length} connect buttons`)
 
       filteredButtonElements.forEach((buttonElement) => {
-        const personName = buttonElement
-          .closest('section')
-          ?.querySelector(personNameSelector)
-          ?.textContent?.trim()
-          ?.split(' ')[0]
+        const personName = buttonElement.closest('section')?.querySelector(personNameSelector)?.textContent?.trim()
 
         if (!personName) {
           console.warn('No name found for button', buttonElement)
