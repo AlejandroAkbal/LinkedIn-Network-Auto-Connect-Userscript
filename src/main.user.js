@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name            LinkedIn Network Auto Connect
 // @namespace       AlejandroAkbal
-// @version         0.2
+// @version         0.3
 // @description     Automatically connect with people on the "My Network" LinkedIn page
 // @author          Alejandro Akbal
 // @license         AGPL-3.0
@@ -172,20 +172,26 @@
           break
         }
 
-        const delay = addRandomDelay(this.actionDelay)
-
         console.info(`Sending connection invite to "${person.name}"`)
 
         person.connectElement.click()
 
+        await sleep(150)
+
+        this.closePossibleInvitePopup()
+
         this.totalRequestsSent += 1
 
-        await sleep(delay)
+        await sleep(addRandomDelay(this.actionDelay))
 
-        if (this.hasReachedWeeklyLimit()) throw new Error('Reached weekly limit')
-        this.closePossiblePopup()
+        if (this.hasReachedWeeklyLimit()) {
+          throw new Error('Reached weekly limit')
+        }
+
+        this.closePossibleRateLimitPopup()
       }
     }
+
     /** @private
      * @returns {boolean}
      */
@@ -201,22 +207,40 @@
 
       return false
     }
+
     /** @private
      * @returns {void}
      */
-    closePossiblePopup() {
-      const popupCloseButtonSelector = 'button.artdeco-button.ip-fuse-limit-alert__primary-action'
+    closePossibleInvitePopup() {
+      const invitePopup = document.querySelector('[data-test-modal-id="send-invite-modal"]')
 
-      const popupCloseButton = document.querySelector(popupCloseButtonSelector)
+      if (!invitePopup) {
+        console.debug('No invite popup found, continuing...')
+        return
+      }
+
+      // Select button children
+      const popupSendButton = invitePopup.querySelector('[aria-label="Send now"]')
+
+      popupSendButton.click()
+
+      console.info('Invite sent')
+    }
+
+    /** @private
+     * @returns {void}
+     */
+    closePossibleRateLimitPopup() {
+      const popupCloseButton = document.querySelector('button.artdeco-button.ip-fuse-limit-alert__primary-action')
 
       if (!popupCloseButton) {
         console.debug('No popup close button found, continuing...')
         return
       }
 
-      console.info('Closing popup')
-
       popupCloseButton.click()
+
+      console.info('Popup closed')
     }
 
     /** @private
