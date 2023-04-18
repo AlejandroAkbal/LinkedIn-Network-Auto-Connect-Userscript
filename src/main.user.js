@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name            LinkedIn Network Auto Connect
 // @namespace       AlejandroAkbal
-// @version         0.3
+// @version         0.4
 // @description     Automatically connect with people on the "My Network" LinkedIn page
 // @author          Alejandro Akbal
 // @license         AGPL-3.0
@@ -127,8 +127,8 @@ function waitForKeyElements(selectorOrFunction, callback, waitOnce, interval, ma
      */
     maxRequests = undefined
 
-    /** @private
-     * @default 0
+    /**
+     * @private
      */
     totalRequestsSent = 0
 
@@ -139,7 +139,8 @@ function waitForKeyElements(selectorOrFunction, callback, waitOnce, interval, ma
       this.maxRequests = maxRequests
     }
 
-    /** @public
+    /**
+     * @public
      * @returns {Promise<void>}
      */
     async init() {
@@ -150,7 +151,8 @@ function waitForKeyElements(selectorOrFunction, callback, waitOnce, interval, ma
       await this.mainLoop()
     }
 
-    /** @private
+    /**
+     * @private
      * @returns {Promise<void>}
      */
     async scrollThroughPage() {
@@ -167,7 +169,8 @@ function waitForKeyElements(selectorOrFunction, callback, waitOnce, interval, ma
       window.scrollTo({ top: 0, behavior: 'smooth' })
     }
 
-    /** @private
+    /**
+     * @private
      * @returns {Promise<void>}
      */
     async mainLoop() {
@@ -183,7 +186,8 @@ function waitForKeyElements(selectorOrFunction, callback, waitOnce, interval, ma
       }
     }
 
-    /** @private
+    /**
+     * @private
      * @returns {personData[]}
      */
     getConnectionsFromCurrentPage() {
@@ -222,7 +226,8 @@ function waitForKeyElements(selectorOrFunction, callback, waitOnce, interval, ma
       return persons
     }
 
-    /** @private
+    /**
+     * @private
      * @param {personData[]} persons
      * @returns {Promise<void>}
      */
@@ -255,7 +260,8 @@ function waitForKeyElements(selectorOrFunction, callback, waitOnce, interval, ma
       }
     }
 
-    /** @private
+    /**
+     * @private
      * @returns {boolean}
      */
     hasReachedWeeklyLimit() {
@@ -271,7 +277,8 @@ function waitForKeyElements(selectorOrFunction, callback, waitOnce, interval, ma
       return false
     }
 
-    /** @private
+    /**
+     * @private
      * @returns {void}
      */
     closePossibleInvitePopup() {
@@ -290,7 +297,8 @@ function waitForKeyElements(selectorOrFunction, callback, waitOnce, interval, ma
       console.info('Invite sent')
     }
 
-    /** @private
+    /**
+     * @private
      * @returns {void}
      */
     closePossibleRateLimitPopup() {
@@ -306,7 +314,8 @@ function waitForKeyElements(selectorOrFunction, callback, waitOnce, interval, ma
       console.info('Popup closed')
     }
 
-    /** @private
+    /**
+     * @private
      * @returns {void}
      */
     finish() {
@@ -355,7 +364,7 @@ function waitForKeyElements(selectorOrFunction, callback, waitOnce, interval, ma
 
   const linkedin = new LinkedIn({})
 
-  waitForKeyElements('#main', (element) => {
+  waitForKeyElements('main', (element) => {
     createInPageMenu(element)
   })
 })()
